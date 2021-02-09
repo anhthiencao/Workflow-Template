@@ -1,0 +1,26 @@
+#!/sbin/openrc-run
+name="Device Status Daemon"
+
+command=/home/sysadmin/app/go-rbac
+workdir="/home/sysadmin/app"
+
+pidfile="/var/run/auth.pid"
+
+conffile="$workdir/auth.conf"
+pofile="$workdir/acl/rbac_policy.csv"
+mofile="$workdir/acl/rbac_model.conf"
+
+command_args="-db boltdb -config $conffile -aclpo $pofile -aclmo $mofile"
+output_log="/var/log/dsoauth/access.log"
+error_log="/var/log/dsoauth/errors.err"
+start_stop_daemon_args="-b --quiet --chdir $workdir -m --pidfile $pidfile -1 $output_log -2 $error_log"
+
+depend() {
+        need net
+        provide wixagent
+}
+
+start_pre() {
+       checkpath --file "${conffile}"
+}
+

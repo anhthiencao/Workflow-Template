@@ -1,0 +1,123 @@
+{
+  "id": 5,
+  "name": "name5",
+  "steps": [
+    {
+      "allow_change": true,
+      "activities": [
+        {
+          "type": "text",
+          "args": "Start counting the progress.",
+          "var": "in_intro",
+          "id": 1,
+          "title": "Introduction",
+          "direction": "typography"
+        }
+      ],
+      "id": 1,
+      "allow_return": true,
+      "title": "Start"
+    },
+    {
+      "allow_change": true,
+      "activities": [
+        {
+          "type": "text",
+          "args": "",
+          "var": "in_hostname",
+          "id": 1,
+          "title": "Hostname",
+          "direction": "input"
+        },
+        {
+          "type": "text",
+          "args": "",
+          "var": "in_type",
+          "id": 2,
+          "params": [
+            "1",
+            "2",
+            "3"
+          ],
+          "title": "Type",
+          "direction": "select"
+        },
+        {
+          "type": "text",
+          "args": "",
+          "var": "in_file",
+          "id": 3,
+          "params": [
+            "Interfaces",
+            "Routing",
+            "Protocols",
+            "Forwarding",
+            "Policy"
+          ],
+          "title": "File",
+          "direction": "select"
+        },
+        {
+          "type": "text",
+          "args": "",
+          "var": "old_config",
+          "id": 4,
+          "title": "Backup old config",
+          "direction": "callback"
+        }
+      ],
+      "id": 2,
+      "allow_return": true,
+      "title": "Preparation"
+    },
+    {
+      "allow_change": true,
+      "activities": [
+        {
+          "type": "text",
+          "args": "http://192.168.1.74/api/v1/config/##in_hostname##/##in_type##/##in_file##",
+          "var": "in_bgp_peer_last",
+          "id": 1,
+          "title": "bgp_peer_last",
+          "direction": "callback"
+        }
+      ],
+      "id": 3,
+      "allow_return": true,
+      "title": "Build Config"
+    },
+    {
+      "allow_change": true,
+      "activities": [
+        {
+          "type": "text",
+          "args": "The prepare router progress",
+          "var": "in_router",
+          "id": 1,
+          "title": "Router",
+          "direction": "typography"
+        }
+      ],
+      "id": 4,
+      "allow_return": true,
+      "title": "Prepare Router"
+    },
+    {
+      "allow_change": true,
+      "activities": [
+        {
+          "type": "text",
+          "args": "Change the progress",
+          "var": "in_change_device",
+          "id": 1,
+          "title": "Change Device",
+          "direction": "typography"
+        }
+      ],
+      "id": 5,
+      "allow_return": true,
+      "title": "Perform Change"
+    }
+  ],
+  "delete": false
+}
